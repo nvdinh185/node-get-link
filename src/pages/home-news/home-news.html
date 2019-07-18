@@ -22,81 +22,16 @@
         <ion-row>
             <ion-col *ngFor="let it of dynamicCards?.items">
                 <ion-card>
-                    <ion-item *ngIf="it.short_detail">
-                        <ion-avatar item-start>
-                            <img *ngIf="it.short_detail.avatar" [src]="it.short_detail.avatar">
-                        </ion-avatar>
-                        <ion-title>{{it.short_detail.h1}}</ion-title>
-                        <p *ngIf="it.short_detail?.p" text-wrap>{{it.short_detail?.p}}</p>
-                        <ion-note item-end *ngIf="it.short_detail?.note">{{it.short_detail?.note | timeAgo }}</ion-note>
-                        <button item-end icon-only ion-button clear small *ngIf="it.short_detail?.action"
-                            color="{{it.short_detail?.action?.color}}">
-                            <ion-icon name="{{it.short_detail?.action?.icon}}"></ion-icon>
-                        </button>
-                    </ion-item>
-
                     <div *ngIf="it.content">
                         <p text-wrap [innerHtml]="it.content | linkify"></p>
                         <div *ngIf="(it.content | linkify:'urlInfos')?.length>0">
                             <div *ngFor="let urlInfo of it.content | linkify:'urlInfos'; let idx = index;">
                                 <button ion-button (click)="isShow = !isShow">Xem chi tiết</button>
                                 <p text-wrap *ngIf="isShow" [innerHtml]="urlInfo.content | newline"></p>
-                                <img src="{{urlInfo.image}}" />
+                                <img *ngIf="isShow" src="{{urlInfo.image}}" />
                             </div>
                         </div>
                     </div>
-
-                    <ion-row no-padding *ngIf="it.results">
-                        <ion-col align-self-center text-center>
-                            <div *ngIf="it.results.likes">
-                                <ion-icon *ngIf="it.results.likes.like" color="primary" icon-start clear small
-                                    name="thumbs-up"></ion-icon>
-                                <ion-icon *ngIf="it.results.likes.love" color="danger" icon-start clear small
-                                    name="heart"></ion-icon>
-                                <ion-icon *ngIf="it.results.likes.sad" color="royal" icon-start clear small name="sad">
-                                </ion-icon>
-                                <ion-icon *ngIf="it.results.likes.angery" color="angery" icon-start clear small
-                                    name="ios-sad"></ion-icon>
-                                <ion-note>{{(it.results.likes.like?.length
-                                            +it.results.likes.love?.length
-                                            +it.results.likes.sad?.length
-                                            +it.results.likes.angery?.length
-                                            )}}</ion-note>
-                            </div>
-                        </ion-col>
-                        <ion-col align-self-center text-center>
-                            <ion-note *ngIf="it.results.comments&&it.results.comments.length>0">
-                                {{(it.results.comments.length)}} Comments</ion-note>
-                        </ion-col>
-                        <ion-col align-self-center text-center>
-                            <ion-note *ngIf="it.results.shares&&it.results.shares.length>0">
-                                {{(it.results.shares.length)}} Shares</ion-note>
-                        </ion-col>
-                    </ion-row>
-
-                    <ion-row no-padding *ngIf="it.actions">
-                        <ion-col text-center>
-                            <button *ngIf="it.actions.like" ion-button clear small color="{{it.actions.like.color}}"
-                                icon-start>
-                                <ion-icon name="{{it.actions.like.icon}}"></ion-icon>
-                                {{it.actions.like.name}}
-                            </button>
-                        </ion-col>
-                        <ion-col text-center>
-                            <button *ngIf="it.actions.comment" ion-button clear small
-                                color="{{it.actions.comment.color}}" icon-start>
-                                <ion-icon name='{{it.actions.comment.icon}}'></ion-icon>
-                                {{it.actions.comment.name}}
-                            </button>
-                        </ion-col>
-                        <ion-col text-center>
-                            <button *ngIf="it.actions.share" ion-button clear small color="{{it.actions.share.color}}"
-                                icon-start>
-                                <ion-icon name='{{it.actions.share.icon}}'></ion-icon>
-                                {{it.actions.share.name}}
-                            </button>
-                        </ion-col>
-                    </ion-row>
                 </ion-card>
             </ion-col>
         </ion-row>
