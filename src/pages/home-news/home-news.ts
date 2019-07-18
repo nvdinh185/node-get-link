@@ -83,51 +83,6 @@ export class HomeNewsPage {
       .then(data => {
         let items = [];
         data.forEach(el => {
-          el.actions = {
-            like: { name: "LIKE", color: "primary", icon: "thumbs-up", next: "LIKE" }
-            , comment: { name: "COMMENT", color: "primary", icon: "chatbubbles", next: "COMMENT" }
-            , share: { name: "SHARE", color: "primary", icon: "share-alt", next: "SHARE" }
-          }
-          el.short_detail = {
-            avatar: "assets/imgs/ca_nau.jpg"
-            , h1: "Nguyen Van Dinh"
-            , p: el.title
-            , note: el.time
-            , action: { color: "primary", icon: "more", next: "MORE" }
-          }
-          el.results = {
-            likes: {
-              like: [""]
-              , love: [""]
-              , sad: [""]
-            }
-            , comments: [
-              {
-                name: "cuong.dq"
-                , comment: "day la cai gi vay"
-                , time: new Date().getTime()
-              }
-              ,
-              {
-                name: "cu.dq"
-                , comment: "la cai nay do nhe"
-                , time: new Date().getTime()
-              }
-            ]
-            , shares: [
-              {
-                name: "cuong.dq"
-                , comment: "day la cai gi vay"
-                , time: new Date().getTime()
-              }
-              ,
-              {
-                name: "cu.dq"
-                , comment: "la cai nay do nhe"
-                , time: new Date().getTime()
-              }
-            ]
-          }
           items.push(el);
         });
         return items;
