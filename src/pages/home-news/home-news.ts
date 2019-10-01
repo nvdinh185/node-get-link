@@ -20,6 +20,9 @@ export class HomeNewsPage {
   ) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      console.log(this.dynamicCards.items)
+    }, 2000);
     this.refreshNews();
     this.events.subscribe('event-main-login-checked'
       , (data) => {

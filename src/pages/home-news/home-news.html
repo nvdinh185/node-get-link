@@ -17,16 +17,16 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content no-padding>
-    <ion-grid no-padding>
+<ion-content>
+    <ion-grid>
         <ion-row>
             <ion-col *ngFor="let it of dynamicCards?.items">
                 <ion-card>
                     <div *ngIf="it.content">
                         <p text-wrap [innerHtml]="it.content | linkify"></p>
+                        <button ion-button (click)="isShow = !isShow">Xem chi tiết</button>
                         <div *ngIf="(it.content | linkify:'urlInfos')?.length>0">
                             <div *ngFor="let urlInfo of it.content | linkify:'urlInfos'; let idx = index;">
-                                <button ion-button (click)="isShow = !isShow">Xem chi tiết</button>
                                 <p text-wrap *ngIf="isShow" [innerHtml]="urlInfo.content | newline"></p>
                                 <img *ngIf="isShow" src="{{urlInfo.image}}" />
                             </div>
